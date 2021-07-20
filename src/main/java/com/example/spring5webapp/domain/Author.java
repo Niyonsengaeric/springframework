@@ -1,61 +1,63 @@
 package com.example.spring5webapp.domain;
 
 import javax.persistence.*;
-
 import java.util.HashSet;
 import java.util.Set;
 
+
 @Entity
 public class Author {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	private String firstName;
-	private String lastName;
-	@ManyToMany(mappedBy = ("authors"))
-	private Set<Book> books  = new HashSet<>();
 
-	public Author() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-	}
+    private String firstName;
+    private String lastName;
 
-	public Author(String firstName, String lastName) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-	}
+    @ManyToMany(mappedBy = "authors")
+    private Set<Book> books = new HashSet<>();
 
-	public Long getId() {
-		return id;
-	}
+    public Author() {
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Author(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public Set<Book> getBooks() {
-		return books;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public void setBooks(Set<Book> books) {
-		this.books = books;
-	}
-	
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
+    }
+
     @Override
     public String toString() {
         return "Author{" +
@@ -80,5 +82,4 @@ public class Author {
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
     }
-
 }

@@ -1,15 +1,16 @@
-package bootstrap;
+package com.example.spring5webapp.bootstrap;
+
 
 import com.example.spring5webapp.domain.Author;
 import com.example.spring5webapp.domain.Book;
 import com.example.spring5webapp.domain.Publisher;
+import com.example.spring5webapp.repositories.AuthorRepository;
+import com.example.spring5webapp.repositories.BookRepository;
+import com.example.spring5webapp.repositories.PublisherRepository;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import repositories.AuthorRepository;
-import repositories.BookRepository;
-import repositories.PublisherRepository;
 
 @Component
 public class BootStrapData implements CommandLineRunner {
@@ -38,23 +39,25 @@ public class BootStrapData implements CommandLineRunner {
 
         System.out.println("Publisher Count: " + publisherRepository.count());
 
-        Author eric = new Author("John", "Doe");
+        Author eric = new Author("Eric", "Evans");
         Book ddd = new Book("Domain Driven Design", "123123");
         eric.getBooks().add(ddd);
         ddd.getAuthors().add(eric);
+
         ddd.setPublisher(publisher);
-        ddd.getBooks().add(ddd);
+        publisher.getBooks().add(ddd);
 
         authorRepository.save(eric);
         bookRepository.save(ddd);
         publisherRepository.save(publisher);
 
-        Author rod = new Author("Rod", "Johnson");
+        Author rod = new Author("John", "Doe");
         Book noEJB = new Book("J2EE Development without EJB", "3939459459");
         rod.getBooks().add(noEJB);
         noEJB.getAuthors().add(rod);
+
         noEJB.setPublisher(publisher);
-        noEJB.getBooks().add(noEJB);
+        publisher.getBooks().add(noEJB); 
 
         authorRepository.save(rod);
         bookRepository.save(noEJB);

@@ -10,9 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
-/**
- * Created by jt on 12/23/19.
- */
 @Entity
 public class Publisher {
 
@@ -25,7 +22,6 @@ public class Publisher {
     private String city;
     private String state;
     private String zip;
-
     @OneToMany
     @JoinColumn(name = "publisher_id")
     private Set<Book> books = new HashSet<>();
